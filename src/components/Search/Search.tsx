@@ -1,14 +1,15 @@
 import React from "react";
 import {
-  TextField,
+  Input,
   Grid,
   makeStyles,
   Button,
   FormControl,
   RadioGroup,
-  FormLabel,
   FormControlLabel,
   Radio,
+  InputAdornment,
+  IconButton,
 } from "@material-ui/core";
 import styles from "./Search.styles";
 import axios from "axios";
@@ -38,27 +39,36 @@ const Search: React.FC<Props> = ({handleSearch}) => {
     setSearch(searchText);
   }
 
+  const clearSearch = () => {
+    setSearch('');
+    handleSearch('', '');
+  }
+
   return (
     <Grid container>
       <Grid item xs={12} md={5}>
-        <TextField
+        <Input
           type="text"
           color="secondary"
           placeholder="Search Appliance"
           fullWidth
-          variant="filled"
           className={classes.search}
           value={search}
           onChange={onSearchChange}
+          endAdornment={
+            <InputAdornment position="end">
+                <div className={classes.clear} onClick={clearSearch}>{`ⓧ`}</div>
+            </InputAdornment>
+          }
         />
       </Grid>
       <Grid item xs={12} md={5} container justify="center">
         <FormControl>
           <RadioGroup name="search" value={category} onChange={handleChange} row>
             <FormControlLabel value="brand" control={<Radio />} label="Brand" />
-            <FormControlLabel value="model" control={<Radio />} label="Model" />
+            <FormControlLabel value="model_name" control={<Radio />} label="Model" />
             <FormControlLabel
-              value="serialNumber"
+              value="serial_number"
               control={<Radio />}
               label="Serial Number"
             />

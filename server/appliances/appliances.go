@@ -11,12 +11,11 @@ import (
 
 type Appliances struct {
 	gorm.Model
-	SerialNumber  string `json:"serialNumber"`
+	SerialNumber string `json:"serialNumber"`
 	Brand string `json:"brand"`
 	ModelName string `json:"model"`
-	Status string    `json:"status"`
-	DateBought string    `json:"dateBought"`
-
+	Status string `json:"status"`
+	DateBought string `json:"dateBought"`
 }
 
 func GetAppliances(c *fiber.Ctx) {
@@ -37,11 +36,11 @@ func GetAppliance(c *fiber.Ctx) {
 func GetAppliancesSearch(c *fiber.Ctx) {
 	category := c.Query("category")
 	search := c.Query("search")
-	categoryParam := fmt.Sprintf("%s = ?", category)
+	categoryParam := fmt.Sprintf("%s LIKE ?", category)
+	searchParam := search+"%"
 	db := database.DB
-	var appliances Appliances
-	// db.Find(&appliances, id)
-	db.Where(categoryParam, search).Find(&appliances)
+	var appliances []Appliances
+	db.Where(categoryParam, searchParam).Find(&appliances)
 	c.JSON(appliances)
 }
 

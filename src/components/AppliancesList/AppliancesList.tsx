@@ -8,7 +8,6 @@ import {
   Grid,
   CardContent,
   Box,
-  Fab,
 } from "@material-ui/core";
 import EditIcon from '@material-ui/icons/Edit'
 import Search from "../Search";
@@ -29,6 +28,11 @@ const AppliancesList = () => {
   }, []);
 
   const handleSearch = async (category: string, search: string) => {
+    if(!category && !search){
+        const res = await axios.get(`${API_URL}/appliances`);
+        setAppliances(res.data);
+        return;
+    }
     const res = await axios.get(`${API_URL}/appliances-search?category=${category}&search=${search}`);
     setAppliances(res.data);
   }

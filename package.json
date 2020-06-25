@@ -2,6 +2,7 @@
   "name": "golang-api-fiber",
   "version": "0.1.0",
   "private": true,
+  "hompage" "",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
