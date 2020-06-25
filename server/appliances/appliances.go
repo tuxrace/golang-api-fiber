@@ -1,7 +1,7 @@
 package appliances
 
 import (
-	// "fmt"
+	"fmt"
 
 	"github.com/tuxrace/golang-api-fiber/database"
 	"github.com/gofiber/fiber"
@@ -34,6 +34,17 @@ func GetAppliance(c *fiber.Ctx) {
 	c.JSON(appliances)
 }
 
+func GetAppliancesSearch(c *fiber.Ctx) {
+	category := c.Query("category")
+	search := c.Query("search")
+	categoryParam := fmt.Sprintf("%s = ?", category)
+	db := database.DB
+	var appliances Appliances
+	// db.Find(&appliances, id)
+	db.Where(categoryParam, search).Find(&appliances)
+	c.JSON(appliances)
+}
+
 func NewAppliance(c *fiber.Ctx) {
 	db := database.DB
 	// appliances := new(Appliances)
@@ -43,8 +54,8 @@ func NewAppliance(c *fiber.Ctx) {
 	// }
 	var appliances Appliances
 	appliances.SerialNumber = "1234"
-	appliances.Brand = "Samsung"
-	appliances.ModelName = "Washer"
+	appliances.Brand = "Panasonic"
+	appliances.ModelName = "Tub"
 	appliances.Status = "Sold"
 	appliances.DateBought = "June 20, 2020"
 	db.Create(&appliances)

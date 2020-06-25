@@ -28,6 +28,7 @@ func setupRoutes(app *fiber.App) {
 
 	app.Get("/api/appliances", appliances.GetAppliances)
 	app.Get("/api/appliances/:id", appliances.GetAppliance)
+	app.Get("/api/appliances-search", appliances.GetAppliancesSearch)
 	app.Post("/api/appliances", appliances.NewAppliance)
 	app.Delete("/api/appliances/:id", appliances.DeleteAppliance)
 }

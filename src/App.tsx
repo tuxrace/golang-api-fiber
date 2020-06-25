@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 
 function App() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <AppliancesList />
     </Container>
   );

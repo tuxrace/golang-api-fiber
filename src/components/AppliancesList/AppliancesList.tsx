@@ -8,7 +8,9 @@ import {
   Grid,
   CardContent,
   Box,
+  Fab,
 } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit'
 import Search from "../Search";
 import styles from "./Appliances.styles";
 
@@ -21,29 +23,35 @@ const AppliancesList = () => {
   useEffect(() => {
     async function getAppliances() {
       const res = await axios.get(`${API_URL}/appliances`);
-      console.log(res);
       setAppliances(res.data);
     }
     getAppliances();
   }, []);
 
+  const handleSearch = async (category: string, search: string) => {
+    const res = await axios.get(`${API_URL}/appliances-search?category=${category}&search=${search}`);
+    setAppliances(res.data);
+  }
+
   return (
-    <Grid container direction="row" spacing={2} alignItems="center">
+    <Grid container direction="row" alignItems="center">
       <Grid item>
         <h1>Appliances</h1>
       </Grid>
       <Grid item xs={12} lg={12}>
-        <Search />
+        <Search handleSearch={handleSearch} />
       </Grid>
-      <Grid item container direction="column" spacing={2}>
-        {appliances.map((appliance: any) => (
+      <Grid item container direction="column">
+        {appliances.length > 0 ? appliances.map((appliance: any) => (
           <Box py={1}>
-            <Card className={classes.card} raised>
-              <CardHeader title={appliance.model} />
-              <CardContent>{appliance.model}</CardContent>
+            <Card className={classes.card}>
+              <CardHeader title={`${appliance.brand} ${appliance.model}`} />
+              <CardContent>
+                  <EditIcon />{appliance.model}
+                </CardContent>
             </Card>
           </Box>
-        ))}
+        )): <div>No Records Found</div>}
       </Grid>
     </Grid>
   );
