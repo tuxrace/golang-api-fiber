@@ -52,15 +52,25 @@ func NewAppliance(c *fiber.Ctx) {
 	// 	return
 	// }
 	var appliances Appliances
-	appliances.SerialNumber = "1234"
-	appliances.Brand = "Panasonic"
-	appliances.ModelName = "Tub"
+	appliances.SerialNumber = "9101"
+	appliances.Brand = "Philips"
+	appliances.ModelName = "Wall Lamp"
 	appliances.Status = "Sold"
-	appliances.DateBought = "June 20, 2020"
+	appliances.DateBought = "June 26, 2020"
 	db.Create(&appliances)
 	c.JSON(appliances)
 }
 
 func DeleteAppliance(c *fiber.Ctx) {
-	c.Send("Delete Appliances")
+	id := c.Params("id")
+	db := database.DB
+
+	var appliances Appliances
+	db.First(&appliances, id)
+	if appliances.SerialNumber == "" {
+        c.Status(500).Send("No appliances Found with SerialNumber")
+        return
+	}
+	db.Delete(&appliances)
+	c.Send("appliances Successfully deleted")
 }

@@ -16,3 +16,8 @@ This will run both `front end` and `back end`
 | POST     | /api/appliances        |
 | DELETE   | /api/appliances/1      |
 | GET      | /api/appliances-search?category=model&search=Tub |
+
+## API Usage
+
+### Add an appliances
+```CURL -X ```
