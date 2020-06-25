@@ -4,6 +4,8 @@
 ## Demo
 https://tuxrace.github.io/golang-api-fiber/.
 
+![screen](./screen.gif "Screen")
+
 ## Install
 ```bash
    npm install
