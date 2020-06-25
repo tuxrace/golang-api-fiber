@@ -7,7 +7,7 @@ https://tuxrace.github.io/golang-api-fiber/.
 ## Install
 ```bash
    npm install
-   npm start
+   npm run start:dev
 ```
 This will run both `front end` and `back end`
 
