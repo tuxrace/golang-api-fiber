@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"github.com/tuxrace/golang-api-fiber/appliances"
 	"github.com/tuxrace/golang-api-fiber/database"
-	"github.com/gofiber/fiber"
 	"github.com/jinzhu/gorm"
+	"github.com/gofiber/fiber"
+	"github.com/gofiber/cors"
 )
 
 func hello(c *fiber.Ctx){
@@ -34,6 +35,7 @@ func setupRoutes(app *fiber.App) {
 func main(){
 	app := fiber.New()
 
+	app.Use(cors.New())
 	startDB()
 	setupRoutes(app)
 	app.Listen(3001)

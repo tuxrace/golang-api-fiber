@@ -11,9 +11,12 @@ import (
 
 type Appliances struct {
 	gorm.Model
-	Title  string `json:"name"`
-	Author string `json:"author"`
-	Rating int    `json:"rating"`
+	SerialNumber  string `json:"serialNumber"`
+	Brand string `json:"brand"`
+	ModelName string `json:"model"`
+	Status string    `json:"status"`
+	DateBought string    `json:"dateBought"`
+
 }
 
 func GetAppliances(c *fiber.Ctx) {
@@ -33,12 +36,19 @@ func GetAppliance(c *fiber.Ctx) {
 
 func NewAppliance(c *fiber.Ctx) {
 	db := database.DB
-	appliances := new(Appliances)
-	if err := c.BodyParser(appliances); err != nil {
-		c.Status(503).Send(err)
-		return
-	}
+	// appliances := new(Appliances)
+	// if err := c.BodyParser(appliances); err != nil {
+	// 	c.Status(503).Send(err)
+	// 	return
+	// }
+	var appliances Appliances
+	appliances.SerialNumber = "1234"
+	appliances.Brand = "Samsung"
+	appliances.ModelName = "Washer"
+	appliances.Status = "Sold"
+	appliances.DateBought = "June 20, 2020"
 	db.Create(&appliances)
+	c.JSON(appliances)
 }
 
 func DeleteAppliance(c *fiber.Ctx) {
