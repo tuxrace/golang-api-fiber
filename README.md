@@ -1,6 +1,9 @@
 # Golang API Fiber
 > REST API using golang fiber with React on frontend
 
+## Demo
+https://tuxrace.github.io/golang-api-fiber/.
+
 ## Install
 ```bash
    npm install
