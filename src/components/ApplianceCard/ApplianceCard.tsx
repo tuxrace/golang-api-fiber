@@ -6,7 +6,6 @@ import {
   CardContent,
   makeStyles,
   Typography,
-  Grid,
 } from "@material-ui/core";
 import styles from "./ApplianceCard.styles";
 

@@ -9,11 +9,8 @@ import {
   FormControlLabel,
   Radio,
   InputAdornment,
-  IconButton,
 } from "@material-ui/core";
 import styles from "./Search.styles";
-import axios from "axios";
-import { API_URL } from "../../config";
 
 const useStyles = makeStyles(styles);
 
