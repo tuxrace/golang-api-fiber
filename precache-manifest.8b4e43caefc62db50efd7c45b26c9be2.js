@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "462c033e0815e6de4456b78b6ecbb539",
+    "revision": "7487dc93865cb1c561a3dce545272d71",
     "url": "/golang-api-fiber/index.html"
   },
   {
