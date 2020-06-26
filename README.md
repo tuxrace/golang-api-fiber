@@ -25,13 +25,21 @@ This will run both `front end` and `back end`
 ## API Usage
 
 ### Get all records
-```CURL /api/v1/appliances```
+```bash
+CURL /api/v1/appliances
+```
 
 ### Add a record
-```CURL -X POST -H /api/appliances --data "{\"serial_number\": \"1111\", \"brand\": \"Mayer\", \"model\": \"Gas Range\"}" /api/v1/appliances```
+```bash
+CURL -X POST -H /api/appliances --data "{\"serial_number\": \"1111\", \"brand\": \"Mayer\", \"model\": \"Gas Range\"}" /api/v1/appliances
+```
 
 ### Get a record
-```CURL /api/v1/appliances/1```
+```bash
+CURL /api/v1/appliances/1
+```
 
 ### Delete a record
-```CURL -X DELETE /api/v1/appliances/1```
+```bash
+CURL -X DELETE /api/v1/appliances/1
+```
