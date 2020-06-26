@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "go run server/main.go",
-    "start:dev": "npx concurrently \"npm start\" \"go run main.go\"", 
+    "start:dev": "npx concurrently \"npm start\" \"go run main.go\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -48,7 +48,20 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "html"
     ]
   }
 }
