@@ -17,7 +17,7 @@ This will run both `front end` and `back end`
 | Method   |      API               |
 |----------|------------------------|
 | GET      |  /api/appliances`      |
-| GET      |    /api/appliances/1   |
+| GET      |  /api/appliances/1   |
 | POST     | /api/appliances        |
 | DELETE   | /api/appliances/1      |
 | GET      | /api/appliances-search?category=model&search=Tub |
