@@ -16,13 +16,8 @@ This will run both `front end` and `back end`
 ## API
 | Method   |      API               |
 |----------|------------------------|
-<<<<<<< HEAD
-| GET      |  /api/appliances`      |
-| GET      |  /api/appliances/1   |
-=======
 | GET      | /api/appliances        |
 | GET      | /api/appliances/1      |
->>>>>>> 2693a9c95f6534db370d3c02dec8df3b1f05f7fa
 | POST     | /api/appliances        |
 | DELETE   | /api/appliances/1      |
 | GET      | /api/appliances-search?category=model&search=Tub |

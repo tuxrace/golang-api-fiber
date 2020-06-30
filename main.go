@@ -9,22 +9,24 @@ import (
 	"github.com/gofiber/cors"
 )
 
-func hello(c *fiber.Ctx){
-	c.Send("Hello")
+func index(c *fiber.Ctx){
+	c.Send("Index")
 }
 
 func startDB() {
 	var err error
 	database.DB, err = gorm.Open("sqlite3", "appliances.db")
+	
 	if err != nil {
 		panic("Error connect")
 	}
+
 	fmt.Println("Connected")
 	database.DB.AutoMigrate(&appliances.Appliances{})
 }
 
 func setupRoutes(app *fiber.App) {
-	app.Get("/", hello)
+	app.Get("/", index)
 
 	app.Get("/api/appliances", appliances.GetAppliances)
 	app.Get("/api/appliances/:id", appliances.GetAppliance)
