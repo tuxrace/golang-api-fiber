@@ -3,21 +3,23 @@ package appliances
 import (
 	"fmt"
 
-	"github.com/tuxrace/golang-api-fiber/database"
 	"github.com/gofiber/fiber"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"github.com/tuxrace/golang-api-fiber/database"
 )
 
+// Appliances Struct
 type Appliances struct {
 	gorm.Model
 	SerialNumber string `json:"serialNumber"`
-	Brand string `json:"brand"`
-	ModelName string `json:"model"`
-	Status string `json:"status"`
-	DateBought string `json:"dateBought"`
+	Brand        string `json:"brand"`
+	ModelName    string `json:"model"`
+	Status       string `json:"status"`
+	DateBought   string `json:"dateBought"`
 }
 
+// GetAppliances function
 func GetAppliances(c *fiber.Ctx) {
 	db := database.DB
 	var appliances []Appliances
@@ -25,6 +27,7 @@ func GetAppliances(c *fiber.Ctx) {
 	c.JSON(appliances)
 }
 
+// GetAppliance function
 func GetAppliance(c *fiber.Ctx) {
 	id := c.Params("id")
 	db := database.DB
@@ -33,17 +36,19 @@ func GetAppliance(c *fiber.Ctx) {
 	c.JSON(appliances)
 }
 
+// GetAppliancesSearch function
 func GetAppliancesSearch(c *fiber.Ctx) {
 	category := c.Query("category")
 	search := c.Query("search")
 	categoryParam := fmt.Sprintf("%s LIKE ?", category)
-	searchParam := search+"%"
+	searchParam := search + "%"
 	db := database.DB
 	var appliances []Appliances
 	db.Where(categoryParam, searchParam).Find(&appliances)
 	c.JSON(appliances)
 }
 
+// NewAppliance function
 func NewAppliance(c *fiber.Ctx) {
 	db := database.DB
 	// appliances := new(Appliances)
@@ -61,6 +66,7 @@ func NewAppliance(c *fiber.Ctx) {
 	c.JSON(appliances)
 }
 
+// DeleteAppliance function
 func DeleteAppliance(c *fiber.Ctx) {
 	id := c.Params("id")
 	db := database.DB
@@ -68,8 +74,8 @@ func DeleteAppliance(c *fiber.Ctx) {
 	var appliances Appliances
 	db.First(&appliances, id)
 	if appliances.SerialNumber == "" {
-        c.Status(500).Send("No appliances Found with SerialNumber")
-        return
+		c.Status(500).Send("No appliances Found with SerialNumber")
+		return
 	}
 	db.Delete(&appliances)
 	c.Send("appliances Successfully deleted")
