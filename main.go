@@ -2,21 +2,22 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/gofiber/cors"
+	"github.com/gofiber/fiber"
+	"github.com/jinzhu/gorm"
 	"github.com/tuxrace/golang-api-fiber/appliances"
 	"github.com/tuxrace/golang-api-fiber/database"
-	"github.com/jinzhu/gorm"
-	"github.com/gofiber/fiber"
-	"github.com/gofiber/cors"
 )
 
-func index(c *fiber.Ctx){
+func index(c *fiber.Ctx) {
 	c.Send("Index")
 }
 
 func startDB() {
 	var err error
 	database.DB, err = gorm.Open("sqlite3", "appliances.db")
-	
+
 	if err != nil {
 		panic("Error connect")
 	}
@@ -35,7 +36,7 @@ func setupRoutes(app *fiber.App) {
 	app.Delete("/api/appliances/:id", appliances.DeleteAppliance)
 }
 
-func main(){
+func main() {
 	app := fiber.New()
 
 	app.Use(cors.New())
