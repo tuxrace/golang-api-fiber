@@ -11,7 +11,7 @@ import (
 )
 
 func index(c *fiber.Ctx) {
-	c.Send("Index")
+	c.Send("Index page")
 }
 
 func startDB() {
