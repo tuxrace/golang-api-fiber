@@ -22,6 +22,7 @@ This will run both `front end` and `back end`
 | DELETE   | /api/appliances/1      |
 | GET      | /api/appliances-search?category=model&search=Tub |
 
+
 ## API Usage
 
 ### Get all records
