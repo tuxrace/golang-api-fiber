@@ -22,7 +22,7 @@ func startDB() {
 		panic("Error connect")
 	}
 
-	fmt.Println("Connected")
+	fmt.Println("DB Connected")
 	database.DB.AutoMigrate(&appliances.Appliances{})
 }
 
